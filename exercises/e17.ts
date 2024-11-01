@@ -1,31 +1,25 @@
-export const minBy = <T>(array: T[], cb: (element: T | undefined) => number): T | undefined => {
-    if (array.length === 0) return undefined;  // Handle empty array case
+export const minBy = <T>(array: T[], cb: (element: T) => string | number): T | undefined => {
+    if (!array[0]) return undefined;  // Handle empty array case
 
-    let minElement = array[0];
-    let minValue = cb(minElement);
+    let minElement: T = array[0];
 
-    for (let i = 1; i < array.length; i++) {
-        const currentValue = cb(array[i]);
-        if (currentValue < minValue) {
-            minValue = currentValue;
-            minElement = array[i];
+    for (let item of array) {
+        if (cb(item) < cb(minElement)) {
+            minElement = item;
         }
     }
 
     return minElement;
 };
 
-export function maxBy<T>(array: T[], cb: (element: T | undefined) => boolean): T | undefined {
-    if (array.length === 0) return undefined;  // Handle empty array case
+export function maxBy<T>(array: T[], cb: (element: T) => string | number): T | undefined {
+    if (!array[0]) return undefined;  // Handle empty array case
 
-    let maxElement = array[0];
-    let maxValue = cb(maxElement);
+    let maxElement: T = array[0];
 
-    for (let i = 1; i < array.length; i++) {
-        const currentValue = cb(array[i]);
-        if (currentValue > maxValue) {
-            maxValue = currentValue;
-            maxElement = array[i];
+    for (let item of array) {
+        if (cb(item) > cb(maxElement)) {
+            maxElement = item;
         }
     }
 

@@ -7,5 +7,4 @@ export function find<T>(array: T[], callback: (element: T) => boolean): T | unde
             return arr
         }
     }
-    return undefined;
 }

@@ -3,9 +3,12 @@
 // Return example: ['name1', 'name2', ... , 'nameN']
 import { Planet } from "../data/types";
 
-export function getPlanetNamesWithLowGravity(planets: Planet[]) {
-    return planets.filter(planet => planet.gravity < 10)
-    .map(planet => planet.name)
+export function getPlanetNamesWithLowGravity(planets: Planet[]): string[] {
+    return planets.reduce((acc, planet) => {
+            if (planet.gravity < 10) {
+                return [...acc, planet.name];
+            } else return acc;
+        }, [] as string[]);
 }
 
 // === TEST YOURSELF ===
